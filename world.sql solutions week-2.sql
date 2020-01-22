@@ -33,3 +33,13 @@ select name, capital
 from country
 where capital is null;
 
+-- select MIN(population) from country;
+-- select MIN(population) as least_pop_country, population from country group by population;
+select name, population
+from country
+where population = 0;
+
+select c.name, l.language
+from country c join countrylanguage l
+on c.code = l.countrycode
+where region = 'Eastern Africa';
