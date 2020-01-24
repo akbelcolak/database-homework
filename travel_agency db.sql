@@ -4,7 +4,7 @@ use travel_agency;
 
 drop table IF exists customers;
 create table customers(
- cid int not null,
+ c_id int not null,
  name varchar(20) not null,
  surname varchar(20) not null,
  email text not null,
@@ -12,7 +12,7 @@ create table customers(
  address text not null,
  birthday date default null,
  gender text default null,
- primary key(cid));
+ primary key(c_id));
  
  insert into customers values(1,'ela','heyo','elaheyo@example.com','123456789','example street 5, 3456','2000-03-12','f'),
 							 (2,'dila','heyo','dilaheyo@example.com','123465478','example street 5, 3456','1995-03-20','f'),
@@ -44,10 +44,9 @@ insert into countries values(1, 'Belgium'),
                             
 drop table if exists cities;
 create table cities(
-city_id int auto_increment primary key not null,
+city_id int auto_increment primary key,
 city_name text not null,
-country_id int);
--- foreign key(country_id) REFERENCES countries(country_id);
+country_id int not null);
 
 insert into cities values(default,'Antwerp',1),	
 						 (default,'Brussels',1),
@@ -62,3 +61,34 @@ insert into cities values(default,'Antwerp',1),
                          (default,'Zug',10),
                          (default,'Oxford',4);
 
+drop table if exists accomodation;
+create table accomodation(
+						a_id int auto_increment primary key,
+                        a_type text default null,
+                        a_name text not null,
+                        a_adress text,
+                        city_id int);
+	
+                        
+insert into accomodation values(default,'hotel','stars','blabla street 55',1),
+							   (default,'hotel','moon','blabla street 55',2),
+                               (default,'bungalow','rainbow','blabla street 55',6),
+                               (default,'hotel','parachut','blabla street 55',5),
+                               (default,'house','Ginas house','blabla street 55',7),
+                               (default,'house','bobs boerderij','blabla street 55',1),
+                               (default,'motel','piyango','blabla street 55',2),
+                               (default,'hotel','blabla','blabla street 55',4),
+                               (default,'motel','mono','blabla street 55',3),
+                               (default,'house','Home','blabla street 55',8),
+                               (default,'hotel','palace','blabla street 55',9);
+                               
+drop table if exists reservation;
+create table reservation (res_id int auto_increment primary key,
+                          c_id int,
+                          start_date date not null,
+                          end_date date not null);
+                          
+                          
+insert into reservation values(default,1,'24.01.2020','30.01.2020');
+				
+                          
