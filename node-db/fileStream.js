@@ -14,3 +14,5 @@ fs.appendFile('file.txt', 'now I am adding some text to existing one.\n',functio
     if(!!error){ throw error};
     console.log('you add to text file :\n');
 });
+
+//fs.unlink = delete the file
